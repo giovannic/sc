@@ -90,18 +90,18 @@
 ## Phase 4: Routes & HTTP Layer (To be approved after Phase 3)
 
 ### Req 4.1: Express routes
-- [ ] Create `server/src/routes/contexts.ts` with all 5 endpoints
-- [ ] Create `server/src/app.ts` with Express app setup and route mounting
-- [ ] Integration tests for all HTTP endpoints
+- [x] Create `server/src/routes/contexts.ts` with all 5 endpoints
+- [x] Create `server/src/app.ts` with Express app setup and route mounting
+- [x] Integration tests for all HTTP endpoints
 
 ---
 
 ## Phase 5: WebSocket Integration (To be approved after Phase 4)
 
 ### Req 5.1: WebSocket server
-- [ ] Integrate WebSocket with `server/src/server.ts`
-- [ ] Connect subscription manager to WebSocket messages
-- [ ] End-to-end tests for WebSocket functionality
+- [x] Integrate WebSocket with `server/src/server.ts`
+- [x] Connect subscription manager to WebSocket messages
+- [x] End-to-end tests for WebSocket functionality
 
 ---
 

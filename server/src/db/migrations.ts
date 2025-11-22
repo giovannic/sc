@@ -25,7 +25,9 @@ const CREATE_CONTEXT_ENTRIES_INDEX = `
   ON context_entries(context_id, created_at);
 `;
 
-export async function runMigrations(): Promise<void> {
+export async function initializeDb(
+  pool: any
+): Promise<void> {
   try {
     await query(CREATE_CONTEXTS_TABLE);
     await query(CREATE_CONTEXT_ENTRIES_TABLE);
@@ -35,4 +37,8 @@ export async function runMigrations(): Promise<void> {
     console.error('Error running migrations:', err);
     throw err;
   }
+}
+
+export async function runMigrations(): Promise<void> {
+  return initializeDb(null);
 }
