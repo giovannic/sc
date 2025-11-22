@@ -13,6 +13,66 @@
   ],
   "paths": {
     "/contexts": {
+      "get": {
+        "summary": "List all contexts",
+        "tags": ["Contexts"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 20
+            },
+            "description": "Number of contexts per page"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            },
+            "description": "Number of contexts to skip"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contexts retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListContextsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "summary": "Create a new shared context",
         "tags": ["Contexts"],
@@ -426,6 +486,43 @@
           "success": {
             "type": "boolean",
             "description": "Whether update succeeded"
+          }
+        }
+      },
+      "ContextSummary": {
+        "type": "object",
+        "required": ["id", "uri", "readme"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Context ID"
+          },
+          "uri": {
+            "type": "string",
+            "description": "Unique context URI"
+          },
+          "readme": {
+            "type": "string",
+            "nullable": true,
+            "description": "README text (null if not set)"
+          }
+        }
+      },
+      "ListContextsResponse": {
+        "type": "object",
+        "required": ["contexts", "total"],
+        "properties": {
+          "contexts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContextSummary"
+            },
+            "description": "Paginated list of contexts"
+          },
+          "total": {
+            "type": "integer",
+            "description": "Total number of contexts"
           }
         }
       },
