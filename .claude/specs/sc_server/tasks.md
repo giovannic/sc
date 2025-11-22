@@ -25,20 +25,20 @@
 - [x] Create `server/.gitignore` for node_modules, dist, .env
 
 ### Req 1.3: Define TypeScript types
-- [ ] Create `server/src/types/index.ts` with interfaces:
+- [x] Create `server/src/types/index.ts` with interfaces:
   - Context (id, uri, readme, createdAt, updatedAt)
   - ContextEntry (id, contextId, content, createdAt)
   - API request/response types for all endpoints
   - SubscriptionMessage type for WebSocket
 
 ### Req 1.4: Set up Docker environment
-- [ ] Create `server/Dockerfile` for Node.js app with multi-stage build
-- [ ] Create `server/docker-compose.yml` with:
+- [x] Create `server/Dockerfile` for Node.js app with multi-stage build
+- [x] Create `server/docker-compose.yml` with:
   - PostgreSQL 15 service (postgres_sc)
   - Node.js app service (sc_server)
   - Volume for PostgreSQL data persistence
   - Environment variables for database connection
-- [ ] Create `server/.env.example` with database connection details
+- [x] Create `server/.env.example` with database connection details
 
 ### Req 1.5: Initialize test infrastructure
 - [ ] Create `server/jest.config.js` with test configuration
