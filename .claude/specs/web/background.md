@@ -5,15 +5,21 @@
 **Important**: The `web/` directory is a git submodule pointing to https://github.com/giovannic/open-webui.
 
 ### Before Starting Tasks
+
+**Important: Two repos, two branches**
+- **SC repo** (`/Users/gc1610/projects/sc`): Work on `feat/web` branch
+- **giovannic/open-webui submodule** (`web/` directory): Work on `main` branch
+
 1. **Set up Node.js**: Use nvm to switch to Node 22 (required by Open WebUI):
    ```bash
    source ~/.nvm/nvm.sh
    nvm use 22
    ```
    The web/ submodule requires Node >=18.13.0 <=22.x.x
-2. Ensure all commits from previous web tasks are **pushed to the remote repository** at https://github.com/giovannic/open-webui
-3. When working on web tasks, use the shared worktree:
+
+2. When working on web tasks, use the shared worktree in the **SC repo**:
    ```bash
+   # From /Users/gc1610/projects/sc (the SC repo)
    # Only create if it doesn't exist
    git worktree add worktrees/feat_web feat/web
    cd worktrees/feat_web
@@ -21,6 +27,13 @@
    npm install --legacy-peer-deps
    ```
    If the worktree already exists, simply navigate to it and continue working.
+
+3. **Inside the worktree**, the `web/` directory (giovannic/open-webui submodule) should be on `main`:
+   ```bash
+   cd worktrees/feat_web/web
+   git checkout main
+   # Make changes, commit, and push to origin/main
+   ```
 
 4. **Build memory allocation**: The build process requires increased Node.js memory:
    ```bash
@@ -30,13 +43,13 @@
    Add this environment variable before running build commands to prevent out-of-memory errors.
 
 5. After completing a task:
-   - Commit changes in the `web/` directory
-   - **Push commits to https://github.com/giovannic/open-webui** (critical for submodule integrity)
-   - Commit the updated submodule reference in the main repo
+   - Commit changes in the `web/` directory (giovannic/open-webui)
+   - **Push commits to https://github.com/giovannic/open-webui main branch** (critical for submodule integrity)
+   - In the SC repo worktree, commit the updated submodule reference to `feat/web` branch
    - Leave the worktree in place for the next task
 
 ### Why This Matters
-The shared worktree allows multiple agents to work on the same feature branch without setup overhead. Commits in the `web/` directory must be pushed to the remote so the submodule reference stays in sync, preventing "upload-pack: not our ref" errors.
+The shared worktree in the SC repo allows multiple agents to work on the same `feat/web` feature branch. The `web/` submodule inside the worktree points to giovannic/open-webui and should always be on `main`. Commits in the submodule must be pushed to the remote so the submodule reference stays in sync, preventing "upload-pack: not our ref" errors.
 
 ---
 
