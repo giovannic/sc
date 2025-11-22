@@ -19,6 +19,8 @@
 - [x] No circular dependencies
 - [x] Exports in barrel file if needed
 
+**STATUS**: ✓ COMPLETED (in `/src/lib/types/index.ts`)
+
 ### 1.2 Create Context API Layer
 **Files**: Create `/src/lib/apis/contexts/index.ts`
 **Requirements**: FR-1, FR-2, FR-3, FR-4, FR-5
@@ -41,6 +43,8 @@ Functions:
 - [x] ~250 lines of code
 - [x] Properly exported from `/src/lib/apis/index.ts`
 
+**STATUS**: ✓ COMPLETED (feat/web_2 - 223 lines in `/src/lib/apis/contexts/index.ts`)
+
 ### 1.3 Add Context Stores
 **Files**: Modify `/src/lib/stores/index.ts`
 **Requirements**: All FR (state management)
@@ -60,6 +64,8 @@ New stores:
 - [x] No conflicts with existing stores (chats, etc.)
 - [x] Types properly imported from context.ts
 
+**STATUS**: ✓ COMPLETED (in `/src/lib/stores/index.ts` lines 60-65)
+
 ---
 
 ## Phase 2: Routing & Layout
@@ -76,14 +82,16 @@ New stores:
 - Render `<slot />` for child routes
 ```
 **Acceptance Criteria**:
-- [ ] Calls listContexts() API function with token
-- [ ] Updates contexts store with response
-- [ ] Error handling: toast on load failure, retry option
-- [ ] Sidebar rendered with list of contexts
-- [ ] Context selection updates contextId store
-- [ ] Loading state shown while fetching
-- [ ] Follows existing (app) layout patterns
-- [ ] ~100 lines
+- [x] Calls listContexts() API function with token
+- [x] Updates contexts store with response
+- [x] Error handling: toast on load failure, retry option
+- [x] Sidebar rendered with list of contexts
+- [x] Context selection updates contextId store
+- [x] Loading state shown while fetching
+- [x] Follows existing (app) layout patterns
+- [x] ~100 lines
+
+**STATUS**: ✓ COMPLETED (feat/web_2 - 134 lines, includes sidebar, loading state, context selection with navigation)
 
 ### 2.2 Create Contexts List Page (Placeholder)
 **Files**: Create `/src/routes/(app)/contexts/+page.svelte`
@@ -95,10 +103,12 @@ New stores:
 - Simple placeholder layout
 ```
 **Acceptance Criteria**:
-- [ ] Displays when no context selected
-- [ ] Clear CTA to create or select context
-- [ ] Matches Open WebUI styling
-- [ ] ~50 lines
+- [x] Displays when no context selected
+- [x] Clear CTA to create or select context
+- [x] Matches Open WebUI styling
+- [x] ~50 lines
+
+**STATUS**: ✓ COMPLETED (feat/web_2 - 9 lines placeholder with i18n support)
 
 ### 2.3 Create Context Detail Layout Route
 **Files**: Create `/src/routes/(app)/contexts/[contextId]/+layout.svelte`

@@ -12,21 +12,24 @@
    ```
    The web/ submodule requires Node >=18.13.0 <=22.x.x
 2. Ensure all commits from previous web tasks are **pushed to the remote repository** at https://github.com/giovannic/open-webui
-3. When creating a worktree for web tasks, initialize the submodule:
+3. When working on web tasks, use the shared worktree:
    ```bash
-   git worktree add worktrees/feat_web_[TASK_ID] feat/web_[TASK_ID]
-   cd worktrees/feat_web_[TASK_ID]
+   # Only create if it doesn't exist
+   git worktree add worktrees/feat_web feat/web
+   cd worktrees/feat_web
    git submodule update --init web
    npm install --legacy-peer-deps
    ```
+   If the worktree already exists, simply navigate to it and continue working.
+
 4. After completing a task:
    - Commit changes in the `web/` directory
    - **Push commits to https://github.com/giovannic/open-webui** (critical for submodule integrity)
    - Commit the updated submodule reference in the main repo
-   - Clean up worktree: `git worktree remove worktrees/feat_web_[TASK_ID]`
+   - Leave the worktree in place for the next task
 
 ### Why This Matters
-If commits aren't pushed to the remote, the submodule won't be able to fetch them on subsequent worktrees, causing "upload-pack: not our ref" errors.
+The shared worktree allows multiple agents to work on the same feature branch without setup overhead. Commits in the `web/` directory must be pushed to the remote so the submodule reference stays in sync, preventing "upload-pack: not our ref" errors.
 
 ---
 
