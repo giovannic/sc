@@ -1,13 +1,26 @@
 import * as Schemas from "./schemas.js";
 /**
- * SC REST API client for interacting with Shared Context server
+ * SC REST API client for interacting with Shared Context server.
+ * Provides methods to create, read, and update shared contexts
+ * with error handling and type validation.
  */
 export class SCClient {
+    /**
+     * Create a new SC REST API client.
+     * @param baseUrl - Base URL of the SC server (default:
+     *   http://localhost:3000)
+     */
     constructor(baseUrl = "http://localhost:3000") {
         this.baseUrl = baseUrl;
     }
     /**
-     * List all contexts with pagination
+     * List all contexts with pagination.
+     * @param limit - Maximum number of contexts to return
+     *   (default: 20)
+     * @param offset - Number of contexts to skip (default: 0)
+     * @returns Promise resolving to a list of contexts with
+     *   total count
+     * @throws Error if the API request fails
      */
     async listContexts(limit = 20, offset = 0) {
         const url = new URL(`${this.baseUrl}/contexts`);
@@ -21,7 +34,11 @@ export class SCClient {
         return Schemas.ListContextsResponseSchema.parse(data);
     }
     /**
-     * Create a new shared context
+     * Create a new shared context.
+     * @param request - Context creation request with optional
+     *   initial entries and README
+     * @returns Promise resolving to context ID and resource URI
+     * @throws Error if the API request fails
      */
     async createContext(request) {
         const response = await fetch(`${this.baseUrl}/contexts`, {
@@ -36,7 +53,16 @@ export class SCClient {
         return Schemas.CreateContextResponseSchema.parse(data);
     }
     /**
-     * Get context entries with pagination
+     * Get context entries with pagination and ordering.
+     * @param contextId - UUID of the context to fetch
+     * @param order - Sort order for entries: "asc" for
+     *   oldest-first, "desc" for newest-first (default: "desc")
+     * @param limit - Maximum number of entries to return
+     *   (default: 20)
+     * @param offset - Number of entries to skip (default: 0)
+     * @returns Promise resolving to context entries with total
+     *   count
+     * @throws Error if the API request fails
      */
     async getContext(contextId, order = "desc", limit = 20, offset = 0) {
         const url = new URL(`${this.baseUrl}/contexts/${contextId}/context`);
@@ -51,7 +77,11 @@ export class SCClient {
         return Schemas.GetContextResponseSchema.parse(data);
     }
     /**
-     * Get context README
+     * Get the README for a context.
+     * @param contextId - UUID of the context
+     * @returns Promise resolving to README content (may be null
+     *   if not set)
+     * @throws Error if the API request fails
      */
     async getReadme(contextId) {
         const response = await fetch(`${this.baseUrl}/contexts/${contextId}/readme`);
@@ -62,7 +92,11 @@ export class SCClient {
         return Schemas.GetReadmeResponseSchema.parse(data);
     }
     /**
-     * Update context README
+     * Update the README for a context.
+     * @param contextId - UUID of the context
+     * @param readme - New README content
+     * @returns Promise resolving to success status
+     * @throws Error if the API request fails
      */
     async updateReadme(contextId, readme) {
         const response = await fetch(`${this.baseUrl}/contexts/${contextId}/readme`, {
@@ -77,7 +111,11 @@ export class SCClient {
         return Schemas.UpdateReadmeResponseSchema.parse(data);
     }
     /**
-     * Add entry to context
+     * Add a new entry to a context.
+     * @param contextId - UUID of the context
+     * @param content - Content of the entry
+     * @returns Promise resolving to entry ID and timestamp
+     * @throws Error if the API request fails
      */
     async addEntry(contextId, content) {
         const response = await fetch(`${this.baseUrl}/contexts/${contextId}/context`, {
@@ -92,7 +130,10 @@ export class SCClient {
         return Schemas.AddEntryResponseSchema.parse(data);
     }
     /**
-     * Parse error response and throw descriptive error
+     * Parse error response and throw a descriptive error.
+     * @param response - Response object from failed API call
+     * @throws Always throws an Error with message from API or
+     *   HTTP status
      */
     async parseError(response) {
         let errorMessage;
