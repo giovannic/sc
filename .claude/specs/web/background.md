@@ -1,5 +1,28 @@
 # Background: Shared Context Web Interface
 
+## Setup & Prerequisites
+
+**Important**: The `web/` directory is a git submodule pointing to https://github.com/giovannic/open-webui.
+
+### Before Starting Tasks
+1. Ensure all commits from previous web tasks are **pushed to the remote repository** at https://github.com/giovannic/open-webui
+2. When creating a worktree for web tasks, initialize the submodule:
+   ```bash
+   git worktree add worktrees/feat_web_[TASK_ID] feat/web_[TASK_ID]
+   cd worktrees/feat_web_[TASK_ID]
+   git submodule update --init web
+   ```
+3. After completing a task:
+   - Commit changes in the `web/` directory
+   - **Push commits to https://github.com/giovannic/open-webui** (critical for submodule integrity)
+   - Commit the updated submodule reference in the main repo
+   - Clean up worktree: `git worktree remove worktrees/feat_web_[TASK_ID]`
+
+### Why This Matters
+If commits aren't pushed to the remote, the submodule won't be able to fetch them on subsequent worktrees, causing "upload-pack: not our ref" errors.
+
+---
+
 ## Requirements
 
 ### 1. Feature Goals
