@@ -108,7 +108,7 @@
 ## Phase 6: Documentation (To be approved after Phase 5)
 
 ### Req 6.1: Server README
-- [ ] Write `server/README.md` with:
+- [x] Write `server/README.md` with:
   - Architecture overview
   - Setup instructions for dev environment
   - How to spin up PostgreSQL + Node.js
