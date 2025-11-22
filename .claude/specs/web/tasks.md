@@ -33,13 +33,13 @@ Functions:
 - addContextEntry(token, contextId, content): Promise<{id, timestamp}>
 ```
 **Acceptance Criteria**:
-- [ ] All functions use Bearer token authentication
-- [ ] Error handling follows existing try-catch-throw pattern
-- [ ] Base URL configurable via env var (`PUBLIC_SC_API_URL`)
-- [ ] Functions return properly typed responses
-- [ ] Follows existing API layer patterns (no class-based)
-- [ ] ~250 lines of code
-- [ ] Properly exported from `/src/lib/apis/index.ts`
+- [x] All functions use Bearer token authentication
+- [x] Error handling follows existing try-catch-throw pattern
+- [x] Base URL configurable via env var (`PUBLIC_SC_API_URL`)
+- [x] Functions return properly typed responses
+- [x] Follows existing API layer patterns (no class-based)
+- [x] ~250 lines of code
+- [x] Properly exported from `/src/lib/apis/index.ts`
 
 ### 1.3 Add Context Stores
 **Files**: Modify `/src/lib/stores/index.ts`
