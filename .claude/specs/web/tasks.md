@@ -54,11 +54,11 @@ New stores:
 - contextTotal: Writable<number>
 ```
 **Acceptance Criteria**:
-- [ ] All stores properly exported from `/src/lib/stores/index.ts`
-- [ ] Stores initialized with sensible defaults (empty arrays, null)
-- [ ] Store names follow existing naming convention
-- [ ] No conflicts with existing stores (chats, etc.)
-- [ ] Types properly imported from context.ts
+- [x] All stores properly exported from `/src/lib/stores/index.ts`
+- [x] Stores initialized with sensible defaults (empty arrays, null)
+- [x] Store names follow existing naming convention
+- [x] No conflicts with existing stores (chats, etc.)
+- [x] Types properly imported from context.ts
 
 ---
 
