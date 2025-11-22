@@ -113,36 +113,36 @@
 
 ### Testing & Validation
 
-- [ ] **6.1** Verify MCP server starts with stdio transport
+- [x] **6.1** Verify MCP server starts with stdio transport
   - Ref: Success Criteria (line 1)
   - Run `index.ts` and verify no startup errors
 
-- [ ] **6.2** Test `create_context` tool end-to-end
+- [x] **6.2** Test `create_context` tool end-to-end
   - Ref: Success Criteria (line 2)
   - Create context via tool, verify response structure
   - Verify context is created on SC server
 
-- [ ] **6.3** Test `context://{id}` resource end-to-end
+- [x] **6.3** Test `context://{id}` resource end-to-end
   - Ref: Success Criteria (line 3)
   - Create context, read it via resource URI
   - Verify entries are formatted correctly
 
-- [ ] **6.4** Test `add_entry` tool end-to-end
+- [x] **6.4** Test `add_entry` tool end-to-end
   - Ref: Success Criteria (line 4)
   - Add entry to existing context
   - Verify entry appears in resource
 
-- [ ] **6.5** Test `list_contexts` tool
+- [x] **6.5** Test `list_contexts` tool
   - Ref: Success Criteria (line 5)
   - List contexts with pagination
   - Verify structure and pagination work
 
-- [ ] **6.6** Test `update_readme` tool
+- [x] **6.6** Test `update_readme` tool
   - Ref: Success Criteria (line 6)
   - Update README, fetch context via resource
   - Verify README changes appear
 
-- [ ] **6.7** Verify error handling
+- [x] **6.7** Verify error handling
   - Ref: Success Criteria (line 8)
   - Test with invalid contextId
   - Test with malformed requests
