@@ -22,7 +22,14 @@
    ```
    If the worktree already exists, simply navigate to it and continue working.
 
-4. After completing a task:
+4. **Build memory allocation**: The build process requires increased Node.js memory:
+   ```bash
+   export NODE_OPTIONS=--max-old-space-size=4096
+   npm run build
+   ```
+   Add this environment variable before running build commands to prevent out-of-memory errors.
+
+5. After completing a task:
    - Commit changes in the `web/` directory
    - **Push commits to https://github.com/giovannic/open-webui** (critical for submodule integrity)
    - Commit the updated submodule reference in the main repo
