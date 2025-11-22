@@ -70,7 +70,7 @@
 ## Phase 3: Core Services (To be approved after Phase 2)
 
 ### Req 3.1: Context Service
-- [ ] Implement `server/src/services/contextService.ts` with:
+- [x] Implement `server/src/services/contextService.ts` with:
   - createContext(entries?, readme?)
   - getContext(contextId, order, limit, offset)
   - getReadme(contextId)
@@ -79,7 +79,7 @@
   - Unit tests for all methods
 
 ### Req 3.2: Subscription Manager
-- [ ] Implement `server/src/services/subscriptionManager.ts` with:
+- [x] Implement `server/src/services/subscriptionManager.ts` with:
   - subscribe(contextId, callback)
   - unsubscribe(contextId, subscriber)
   - broadcast(contextId, message)
