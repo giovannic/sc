@@ -5,14 +5,21 @@
 **Important**: The `web/` directory is a git submodule pointing to https://github.com/giovannic/open-webui.
 
 ### Before Starting Tasks
-1. Ensure all commits from previous web tasks are **pushed to the remote repository** at https://github.com/giovannic/open-webui
-2. When creating a worktree for web tasks, initialize the submodule:
+1. **Set up Node.js**: Use nvm to switch to Node 22 (required by Open WebUI):
+   ```bash
+   source ~/.nvm/nvm.sh
+   nvm use 22
+   ```
+   The web/ submodule requires Node >=18.13.0 <=22.x.x
+2. Ensure all commits from previous web tasks are **pushed to the remote repository** at https://github.com/giovannic/open-webui
+3. When creating a worktree for web tasks, initialize the submodule:
    ```bash
    git worktree add worktrees/feat_web_[TASK_ID] feat/web_[TASK_ID]
    cd worktrees/feat_web_[TASK_ID]
    git submodule update --init web
+   npm install --legacy-peer-deps
    ```
-3. After completing a task:
+4. After completing a task:
    - Commit changes in the `web/` directory
    - **Push commits to https://github.com/giovannic/open-webui** (critical for submodule integrity)
    - Commit the updated submodule reference in the main repo

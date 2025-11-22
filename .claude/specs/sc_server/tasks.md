@@ -41,9 +41,9 @@
 - [x] Create `server/.env.example` with database connection details
 
 ### Req 1.5: Initialize test infrastructure
-- [ ] Create `server/jest.config.js` with test configuration
-- [ ] Create `server/test/setup.ts` for test utilities and helpers
-- [ ] Create placeholder test files:
+- [x] Create `server/jest.config.js` with test configuration
+- [x] Create `server/test/setup.ts` for test utilities and helpers
+- [x] Create placeholder test files:
   - `server/test/unit/contextService.test.ts`
   - `server/test/unit/subscriptionManager.test.ts`
   - `server/test/integration/api.test.ts`
