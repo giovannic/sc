@@ -14,10 +14,10 @@
 - GetContextResponse
 ```
 **Acceptance Criteria**:
-- [ ] All interfaces properly typed with required/optional fields
-- [ ] Interfaces match SC API OpenAPI spec
-- [ ] No circular dependencies
-- [ ] Exports in barrel file if needed
+- [x] All interfaces properly typed with required/optional fields
+- [x] Interfaces match SC API OpenAPI spec
+- [x] No circular dependencies
+- [x] Exports in barrel file if needed
 
 ### 1.2 Create Context API Layer
 **Files**: Create `/src/lib/apis/contexts/index.ts`
