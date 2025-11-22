@@ -93,7 +93,7 @@
   - Creates `StdioServerTransport` and connects to McpServer
   - Handles errors and shutdown gracefully
 
-- [ ] **5.2** Add HTTP/SSE transport to `src/transport.ts`
+- [x] **5.2** Add HTTP/SSE transport to `src/transport.ts`
   - Ref: Requirement 2.3.2 & Design (Transport Layer)
   - Export `setupHttpTransport()` function that returns Express middleware
   - Creates fresh transport instance per request
