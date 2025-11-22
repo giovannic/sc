@@ -2,7 +2,12 @@ import { StdioServerTransport, } from "@modelcontextprotocol/sdk/server/stdio.js
 import { StreamableHTTPServerTransport, } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import { randomUUID } from "node:crypto";
 /**
- * Setup stdio transport for MCP server
+ * Setup stdio transport for MCP server.
+ * Connects the MCP server to stdio (standard input/output) for
+ * CLI-based agents and local process integration. This is the
+ * primary transport for direct CLI usage.
+ * @param server - The MCP server instance to connect
+ * @throws Error if connection setup fails
  */
 export async function setupStdioTransport(server) {
     const transport = new StdioServerTransport();
@@ -10,19 +15,28 @@ export async function setupStdioTransport(server) {
     console.error("[SC MCP Server] Started on stdio transport");
 }
 /**
- * Setup HTTP/SSE transport for MCP server
- *
+ * Setup HTTP/SSE transport for MCP server.
  * Returns middleware that can be used with Express or similar
- * frameworks. Creates a fresh transport per request.
- *
- * @param server - The MCP server instance
+ * frameworks for web-based agents. Creates session-aware
+ * transports that can handle streaming HTTP requests with
+ * Server-Sent Events (SSE). Sessions are tracked and reused
+ * for requests with matching session IDs.
+ * @param server - The MCP server instance to connect
  * @returns Middleware function for handling HTTP requests
+ *   with signature (req, res, parsedBody?) => Promise<void>
  */
 export function setupHttpTransport(server) {
     // Map to track active sessions
     const sessions = new Map();
     /**
-     * Middleware handler for HTTP requests
+     * Middleware handler for HTTP requests.
+     * Processes incoming HTTP requests, managing sessions via
+     * x-mcp-session header. Reuses existing transports for
+     * requests with the same session ID, or creates new
+     * sessions. Delegates request handling to the transport.
+     * @param req - Incoming HTTP request
+     * @param res - HTTP response object
+     * @param parsedBody - Optional parsed request body
      */
     return async (req, res, parsedBody) => {
         // Extract session ID from header if present

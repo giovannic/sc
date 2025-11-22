@@ -4,7 +4,14 @@ import { SCClient } from "./client.js";
 import * as Schemas from "./schemas.js";
 
 /**
- * Register all MCP tools
+ * Register all MCP tools.
+ * Sets up tool handlers for create_context, add_entry,
+ * update_readme, and list_contexts. Tools handle input
+ * validation via Zod schemas and send resource update
+ * notifications when context data changes.
+ * @param server - The MCP server instance to register with
+ * @param client - The SC REST API client for executing
+ *   operations
  */
 export function registerTools(
   server: Server,
@@ -32,8 +39,12 @@ export function registerTools(
 }
 
 /**
- * Tool: create_context
+ * Handle create_context tool.
  * Creates a new shared context with optional initial entries
+ * and README. Validates input using CreateContextToolInputSchema.
+ * @param client - The SC REST API client
+ * @param args - Tool arguments (entries array, readme string)
+ * @returns Tool response with context ID and URI
  */
 async function handleCreateContext(
   client: SCClient,
@@ -68,8 +79,14 @@ async function handleCreateContext(
 }
 
 /**
- * Tool: add_entry
- * Add a new entry to an existing context
+ * Handle add_entry tool.
+ * Adds a new entry to an existing context. Validates input
+ * using AddEntryToolInputSchema. Sends resource update
+ * notification to notify clients of context changes.
+ * @param server - The MCP server instance for notifications
+ * @param client - The SC REST API client
+ * @param args - Tool arguments (contextId, content)
+ * @returns Tool response with entry ID and timestamp
  */
 async function handleAddEntry(
   server: Server,
@@ -114,8 +131,14 @@ async function handleAddEntry(
 }
 
 /**
- * Tool: update_readme
- * Update the README for a context
+ * Handle update_readme tool.
+ * Updates the README for a context. Validates input using
+ * UpdateReadmeToolInputSchema. Sends resource update
+ * notification to notify clients of context changes.
+ * @param server - The MCP server instance for notifications
+ * @param client - The SC REST API client
+ * @param args - Tool arguments (contextId, readme)
+ * @returns Tool response with success status
  */
 async function handleUpdateReadme(
   server: Server,
@@ -155,8 +178,13 @@ async function handleUpdateReadme(
 }
 
 /**
- * Tool: list_contexts
- * List available contexts with pagination
+ * Handle list_contexts tool.
+ * Lists available contexts with pagination support. Validates
+ * input using ListContextsToolInputSchema. Returns formatted
+ * text with context summaries and pagination info.
+ * @param client - The SC REST API client
+ * @param args - Tool arguments (limit, offset)
+ * @returns Tool response with context list and total count
  */
 async function handleListContexts(
   client: SCClient,

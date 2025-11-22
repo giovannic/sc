@@ -1,6 +1,13 @@
 import { ReadResourceRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 /**
- * Register resource handlers for context://{contextId}
+ * Register resource handlers for context://{contextId}.
+ * Sets up a dynamic resource handler that responds to requests
+ * for contexts using the context:// URI scheme. Fetches
+ * context entries and README from the SC API, formatting them
+ * as human-readable text. Supports pagination via query
+ * parameters (order, limit, offset).
+ * @param server - The MCP server instance to register with
+ * @param client - The SC REST API client for fetching data
  */
 export function registerResources(server, client) {
     server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
@@ -15,7 +22,15 @@ export function registerResources(server, client) {
     });
 }
 /**
- * Handle reading a context resource
+ * Handle reading a context resource.
+ * Fetches context entries and README, formats them as
+ * human-readable text with metadata (timestamps, entry IDs).
+ * Supports pagination and ordering of entries.
+ * @param client - The SC REST API client
+ * @param contextId - UUID of the context to read
+ * @param params - Request parameters (order, limit, offset)
+ * @returns MCP resource response with formatted content
+ * @throws Error if context not found or API request fails
  */
 async function handleReadContextResource(client, contextId, params) {
     try {

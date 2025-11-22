@@ -150,7 +150,7 @@
 
 ### Documentation
 
-- [ ] **7.1** Add JSDoc comments to all exported functions
+- [x] **7.1** Add JSDoc comments to all exported functions
   - Ref: Requirement 4.2 (Protocol Compliance)
   - Document tool inputs/outputs
   - Document resource behavior

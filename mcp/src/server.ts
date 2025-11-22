@@ -6,7 +6,11 @@ import {
 } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * Create and configure MCP server instance
+ * Create and configure a new MCP server instance.
+ * Sets up request handlers for listing resources, reading
+ * resources, and calling tools. Handlers are registered
+ * later via registerResources and registerTools.
+ * @returns A configured MCP Server instance
  */
 export function createMCPServer(): Server {
   const server = new Server(
@@ -60,7 +64,11 @@ export function createMCPServer(): Server {
 }
 
 /**
- * Get or create the singleton MCP server
+ * Get or create the singleton MCP server instance.
+ * Ensures only one server instance exists throughout the
+ * application lifecycle. Subsequent calls return the same
+ * instance created on first call.
+ * @returns The singleton MCP Server instance
  */
 let mcpServer: Server | undefined;
 
