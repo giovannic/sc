@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "tsx src/index.ts"
+    "dev": "nodemon --exec tsx src/index.ts",
+    "dev:debug": "nodemon --exec node --inspect-brk=0.0.0.0:9232 -r tsx/register src/index.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.0",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
+    "nodemon": "^3.0.2",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },

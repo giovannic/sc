@@ -153,14 +153,25 @@ The index optimizes pagination queries on context entries.
 
 3. **Start development server:**
    ```bash
+   npm install
    npm run dev
    ```
-   Server runs with ts-node and auto-reloads on file changes
+   - Server runs with nodemon + ts-node and auto-reloads on file changes
+   - Database is automatically initialized with migrations on first startup
+   - Listens on http://localhost:3000
 
-4. **Run tests:**
+4. **Debug with Node Inspector:**
+   ```bash
+   npm run dev:debug
+   ```
+   - Node Inspector available at localhost:9229
+   - Open `chrome://inspect` in Chrome DevTools to debug
+   - Server reloads automatically on file changes
+
+5. **Run tests:**
    ```bash
    npm test           # Single run
-   npm run test:watch # Watch mode
+   npm run test:watch # Watch mode (auto-rerun on changes)
    ```
 
 ## API Endpoints
