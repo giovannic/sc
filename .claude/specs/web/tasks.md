@@ -122,12 +122,12 @@ New stores:
 - Render `<slot />` for detail page
 ```
 **Acceptance Criteria**:
-- [ ] Validates contextId exists (catch 404, redirect to /contexts)
-- [ ] Calls getContextReadme() and getContext() in parallel
-- [ ] Updates contextReadme and contextEntries stores
-- [ ] Handles loading and error states
-- [ ] WebSocket subscription initialized here (if supported)
-- [ ] ~120 lines
+- [x] Validates contextId exists (catch 404, redirect to /contexts)
+- [x] Calls getContextReadme() and getContext() in parallel
+- [x] Updates contextReadme and contextEntries stores
+- [x] Handles loading and error states
+- [x] WebSocket subscription initialized here (if supported)
+- [x] ~120 lines
 
 ### 2.4 Create Context Detail Page
 **Files**: Create `/src/routes/(app)/contexts/[contextId]/+page.svelte`
@@ -139,10 +139,10 @@ New stores:
 - Handle responsive layout
 ```
 **Acceptance Criteria**:
-- [ ] Renders ContextViewer with full layout
-- [ ] Responsive on mobile/tablet/desktop
-- [ ] Handles 404 redirects properly
-- [ ] ~30 lines (mostly component composition)
+- [x] Renders ContextViewer with full layout
+- [x] Responsive on mobile/tablet/desktop
+- [x] Handles 404 redirects properly
+- [x] ~30 lines (mostly component composition)
 
 ---
 
