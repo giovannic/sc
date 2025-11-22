@@ -19,7 +19,7 @@ Provides agentic access to shared contexts through a standardized MCP interface.
 
 - Node.js 18+
 - npm or yarn
-- SC Server running (typically on `localhost:3000`)
+- SC Server running (typically on `localhost:3001`)
 
 ### Installation
 
@@ -35,7 +35,7 @@ npm run dev
 
 - Server starts in stdio transport mode
 - Auto-reloads on TypeScript file changes via nodemon
-- Connects to SC Server at `http://localhost:3000` by default
+- Connects to SC Server at `http://localhost:3001` by default
 - Logs appear in terminal
 
 ### Quick Start - Production
@@ -58,12 +58,12 @@ npm run dev:debug
 ### Environment Variables
 
 ```bash
-SC_SERVER_URL=http://localhost:3000 npm run dev
+SC_SERVER_URL=http://localhost:3001 npm run dev
 ```
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `SC_SERVER_URL` | `http://localhost:3000` | SC Server base URL |
+| `SC_SERVER_URL` | `http://localhost:3001` | SC Server base URL |
 
 ## Claude Desktop Integration
 
@@ -91,7 +91,7 @@ SC_SERVER_URL=http://localhost:3000 npm run dev
          "args": ["run", "dev"],
          "cwd": "/Users/gc1610/projects/sc/mcp",
          "env": {
-           "SC_SERVER_URL": "http://localhost:3000"
+           "SC_SERVER_URL": "http://localhost:3001"
          }
        }
      }
@@ -107,7 +107,7 @@ SC_SERVER_URL=http://localhost:3000 npm run dev
          "command": "node",
          "args": ["/Users/gc1610/projects/sc/mcp/dist/index.js"],
          "env": {
-           "SC_SERVER_URL": "http://localhost:3000"
+           "SC_SERVER_URL": "http://localhost:3001"
          }
        }
      }
@@ -211,7 +211,7 @@ mcp/
 
 ### Environment Variables
 
-- `SC_SERVER_URL`: Base URL for SC REST API (default: `http://localhost:3000`)
+- `SC_SERVER_URL`: Base URL for SC REST API (default: `http://localhost:3001`)
 
 ## Type Safety
 

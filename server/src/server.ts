@@ -12,7 +12,7 @@ interface WebSocketWithContextId extends WebSocket {
 
 export async function startServer(
   pool: Pool,
-  port: number = 3000
+  port: number = 3001
 ): Promise<http.Server> {
   // Initialize database
   await initializeDb(pool);

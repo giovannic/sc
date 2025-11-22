@@ -58,16 +58,28 @@ sc/
 
 Run each command in a separate terminal:
 
-### Terminal 1: Database & Server
+### Terminal 1: Start PostgreSQL (one time)
+
+```bash
+# macOS with Homebrew
+brew services start postgresql
+
+# Linux (Ubuntu/Debian)
+sudo systemctl start postgresql
+
+# Or verify it's running on port 5432
+```
+
+### Terminal 2: Server
 
 ```bash
 cd /Users/gc1610/projects/sc/server
 npm install
-docker-compose up     # Starts PostgreSQL + runs server in dev mode
+npm run dev           # Starts server in dev mode
 # Server listens on http://localhost:3000
 ```
 
-### Terminal 2: Web UI
+### Terminal 3: Web UI
 
 ```bash
 cd /Users/gc1610/projects/sc/web
@@ -78,7 +90,7 @@ npm run dev          # Vite dev server with HMR
 # Web UI available at http://localhost:5173
 ```
 
-### Terminal 3: MCP Server (for Claude Desktop integration)
+### Terminal 4: MCP Server (for Claude Desktop integration)
 
 ```bash
 cd /Users/gc1610/projects/sc/mcp
@@ -155,24 +167,28 @@ independent logs for easy troubleshooting.
 
 ### ✅ Database
 
-- PostgreSQL 15 via Docker Compose
-- Automatic schema migrations
+- PostgreSQL 15 running locally on localhost:5432
+- Automatic schema migrations on server startup
 - Persistent data across server reloads
-- Easy reset: `docker-compose down -v && docker-compose up`
+- Easy reset: `dropdb sc_server -U sc_user && createdb sc_server -U sc_user`
 
 ## Common Development Tasks
 
 ### Restart Services
 
 ```bash
-# Server + Database
-docker-compose down && docker-compose up
+# Server (just press Ctrl+C and re-run)
+npm run dev
 
 # Web UI (just press Ctrl+C and re-run)
 npm run dev
 
 # MCP (just press Ctrl+C and re-run)
 npm run dev
+
+# Reset PostgreSQL database (warning: deletes all data)
+dropdb sc_server -U sc_user
+createdb sc_server -U sc_user
 ```
 
 ### Run Tests
@@ -225,7 +241,7 @@ npm start
 - `NODE_ENV`: development or production
 
 ### MCP
-- `SC_SERVER_URL`: SC Server URL (default http://localhost:3000)
+- `SC_SERVER_URL`: SC Server URL (default http://localhost:3001)
 
 ### Web
 - `VITE_SC_SERVER_URL`: SC Server URL (optional)
@@ -272,13 +288,18 @@ npm run dev
 
 ```bash
 # Check PostgreSQL is running
-docker-compose ps
+pg_isready -h localhost -p 5432
 
-# View logs
-docker-compose logs postgres_sc
+# Start PostgreSQL if not running
+brew services start postgresql  # macOS
+sudo systemctl start postgresql # Linux
 
-# Restart
-docker-compose down && docker-compose up
+# Check database exists
+psql -U sc_user -d sc_server -c "SELECT 1"
+
+# Reset database
+dropdb sc_server -U sc_user
+createdb sc_server -U sc_user
 ```
 
 ### Changes Not Hot Reloading

@@ -108,59 +108,56 @@ The index optimizes pagination queries on context entries.
 ## Development Environment Setup
 
 ### Prerequisites
-- Docker & Docker Compose (for containerized PostgreSQL)
 - Node.js 18+ & npm
+- PostgreSQL 15+ running on localhost:5432
 - PostgreSQL client tools (psql) - optional, for direct DB access
 
-### Quick Start with Docker Compose
-
-1. **Clone the repository and navigate to the server directory:**
-   ```bash
-   cd server
-   ```
-
-2. **Create environment file:**
-   ```bash
-   cp .env.example .env
-   ```
-
-3. **Start services:**
-   ```bash
-   docker-compose up
-   ```
-   This starts:
-   - PostgreSQL 15 on localhost:5432
-   - Node.js development server on localhost:3000
-   - Automatic schema migrations on startup
-
-4. **Verify server is running:**
-   ```bash
-   curl http://localhost:3000/contexts
-   ```
-
-### Local Development (without Docker)
+### Quick Start - Local Development
 
 1. **Install dependencies:**
    ```bash
    npm install
    ```
 
-2. **Set up PostgreSQL:**
+2. **Create environment file:**
    ```bash
-   # Start PostgreSQL on localhost:5432 with credentials from .env.example
-   # Or modify DATABASE_URL environment variable
+   cp .env.example .env
+   ```
+   Adjust the values if your PostgreSQL uses different credentials or port.
+
+3. **Ensure PostgreSQL is running:**
+   ```bash
+   # macOS with Homebrew
+   brew services start postgresql
+
+   # Linux (Ubuntu/Debian)
+   sudo systemctl start postgresql
+
+   # Manual start
+   postgres -D /usr/local/var/postgres
    ```
 
-3. **Start development server:**
+4. **Create the database (if it doesn't exist):**
    ```bash
-   npm install
+   createdb sc_server -U sc_user
+   # or with psql
+   psql -U postgres -c "CREATE DATABASE sc_server OWNER sc_user;"
+   ```
+
+5. **Start the development server:**
+   ```bash
    npm run dev
    ```
    - Server runs with nodemon + ts-node and auto-reloads on file changes
-   - Database is automatically initialized with migrations on first startup
+   - Database schema is automatically initialized with migrations on first startup
    - Listens on http://localhost:3000
 
-4. **Debug with Node Inspector:**
+6. **Verify server is running:**
+   ```bash
+   curl http://localhost:3000/contexts
+   ```
+
+7. **Debug with Node Inspector:**
    ```bash
    npm run dev:debug
    ```
@@ -168,7 +165,7 @@ The index optimizes pagination queries on context entries.
    - Open `chrome://inspect` in Chrome DevTools to debug
    - Server reloads automatically on file changes
 
-5. **Run tests:**
+8. **Run tests:**
    ```bash
    npm test           # Single run
    npm run test:watch # Watch mode (auto-rerun on changes)

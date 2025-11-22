@@ -21,7 +21,7 @@ import { setupStdioTransport } from "./transport.js";
  */
 async function main(): Promise<void> {
   const scBaseUrl =
-    process.env.SC_SERVER_URL || "http://localhost:3000";
+    process.env.SC_SERVER_URL || "http://localhost:3001";
 
   // Create MCP server
   const server = getMCPServer();
