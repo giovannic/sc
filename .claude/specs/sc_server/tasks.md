@@ -54,16 +54,16 @@
 ## Phase 2: Database Layer (To be approved after Phase 1)
 
 ### Req 2.1: Database connection and migrations
-- [ ] Create `server/src/db/connection.ts` for PostgreSQL pool setup
-- [ ] Create `server/src/db/migrations.ts` with:
+- [x] Create `server/src/db/connection.ts` for PostgreSQL pool setup
+- [x] Create `server/src/db/migrations.ts` with:
   - Create contexts table
   - Create context_entries table
   - Migration runner function
-- [ ] Create `server/src/db/queries.ts` with parameterized SQL queries
+- [x] Create `server/src/db/queries.ts` with parameterized SQL queries
 
 ### Req 2.2: Database initialization tests
-- [ ] Unit tests for database connection
-- [ ] Integration tests for table creation
+- [x] Unit tests for database connection
+- [x] Integration tests for table creation
 
 ---
 
