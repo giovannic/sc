@@ -15,14 +15,14 @@
   - Include appropriate status codes and error responses
 
 ### Req 1.2: Set up project structure and dependencies
-- [ ] Create `server/package.json` with dependencies:
+- [x] Create `server/package.json` with dependencies:
   - express, typescript, ts-node
   - pg (node-postgres)
   - ws (WebSocket library)
   - jest, supertest (testing)
   - @types/node, @types/express, @types/ws
-- [ ] Create `server/tsconfig.json` with strict TypeScript config
-- [ ] Create `server/.gitignore` for node_modules, dist, .env
+- [x] Create `server/tsconfig.json` with strict TypeScript config
+- [x] Create `server/.gitignore` for node_modules, dist, .env
 
 ### Req 1.3: Define TypeScript types
 - [ ] Create `server/src/types/index.ts` with interfaces:
